@@ -1,6 +1,8 @@
 defmodule VanishApiWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :vanish_api
 
+  plug CORSPlug, origin: ["http://localhost:3000"]
+
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
@@ -29,6 +31,7 @@ defmodule VanishApiWeb.Endpoint do
     gzip: false,
     only: VanishApiWeb.static_paths()
 
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
@@ -53,5 +56,6 @@ defmodule VanishApiWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
   plug VanishApiWeb.Router
 end

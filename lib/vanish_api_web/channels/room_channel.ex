@@ -10,7 +10,9 @@ defmodule VanishApiWeb.RoomChannel do
   # Handle incoming messages
   def handle_in("new_msg", %{"body" => body}, socket) do
     room_id = socket.assigns[:room_id]
+
     broadcast!(socket, "new_msg", %{body: body, room: room_id})
+
     {:noreply, socket}
   end
 

@@ -19,11 +19,21 @@ defmodule VanishApiWeb.ChatJSON do
     %{data: chat}
   end
 
+  def new_record(%{chat: chat}) do
+    %{data: any_data(chat)}
+  end
+
   defp data(%Chat{} = chat) do
     %{
       id: chat.id,
-      name: chat.name,
-      age: chat.age
+      name: chat.creator_name,
     }
   end
+
+  defp any_data(%Chat{} = chat) do
+    chat
+    |> Map.from_struct()
+    |> Map.drop([:__meta__, :inserted_at, :updated_at])
+  end
+
 end

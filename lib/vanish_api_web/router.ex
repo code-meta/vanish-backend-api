@@ -23,7 +23,8 @@ defmodule VanishApiWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", VanishApiWeb do
     pipe_through :api
-    resources "/chats", ChatController, except: [:new, :edit]
+    resources "/chats", ChatController
+    post "/chats/create_message", ChatController, :create_message
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
